@@ -1,6 +1,7 @@
 
 > npm install --global babel-cli
 > npm install --global yarn
+> npm install -g live-server
 
 > yarn init
 > yarn add babel-preset-react
