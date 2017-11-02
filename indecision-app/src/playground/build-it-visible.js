@@ -18,7 +18,7 @@ const render = () => {
                 <button onClick={showDetails}>{
                     clicked ? "Hide Details" : "Show Details"
                 }</button>
-                {clicked && <p>Hello World</p>}
+                <p>{clicked && "Hello World"}</p>
             </div>
         );
 
