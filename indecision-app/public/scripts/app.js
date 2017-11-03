@@ -1,36 +1,45 @@
 "use strict";
 
-var appRoot = document.getElementById('app');
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var clicked = false;
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var showDetails = function showDetails() {
-    clicked = !clicked;
-    render();
-};
+var Person = function () {
 
-var render = function render() {
-    var template = React.createElement(
-        "div",
-        null,
-        React.createElement(
-            "h1",
-            null,
-            "Visibility Toggle"
-        ),
-        React.createElement(
-            "button",
-            { onClick: showDetails },
-            clicked ? "Hide Details" : "Show Details"
-        ),
-        React.createElement(
-            "p",
-            null,
-            clicked && "Hello World"
-        )
-    );
+    // constructor(name){
+    //     this.name = name || 'test';
+    // }
 
-    ReactDOM.render(template, appRoot);
-};
+    // Or
+    function Person() {
+        var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'test';
+        var age = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
 
-render();
+        _classCallCheck(this, Person);
+
+        this.name = name;
+        this.age = age;
+    }
+
+    _createClass(Person, [{
+        key: "getGreeting",
+        value: function getGreeting() {
+            return "Hi " + this.name + "!";
+        }
+    }, {
+        key: "getMyName",
+        value: function getMyName() {
+            return this.name + " is " + this.age + " year(s) old.";
+        }
+    }]);
+
+    return Person;
+}();
+
+var me = new Person('Mohammad Najar', 33);
+console.log(me.getGreeting());
+console.log(me.getMyName());
+
+var other = new Person();
+console.log(other.getGreeting());
+console.log(other.getMyName());
