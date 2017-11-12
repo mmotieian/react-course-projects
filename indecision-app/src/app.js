@@ -20,7 +20,9 @@ class Action extends React.Component {
     render() {
         return (
             <div>
-                <button onClick={this.handlePick}>What should I do?</button>
+                <button
+                    disabled={!this.props.hasOptions}
+                    onClick={this.handlePick}>What should I do?</button>
             </div>
         );
     }
@@ -39,22 +41,18 @@ class Option extends React.Component {
 
 class Options extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.handleRemoveAll = this.handleRemoveAll.bind(this);
-    }
+
 
     handleRemoveAll() {
 
-        console.log(this.props.options);
-        // alert('handleRemoveAll clicked');
+
     }
 
     render() {
         return (
 
             <div>
-                <button onClick={this.handleRemoveAll}>Remove All</button>
+                <button onClick={this.props.handleDeleteOptions}>Remove All</button>
                 {this.props.options.map(option => <Option key={option} optionText={option}/>)}
             </div>
         );
@@ -90,17 +88,42 @@ class AddOption extends React.Component {
 
 class IndecisionApp extends React.Component {
 
+    constructor(props) {
+        super(props);
+
+        this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
+        this.handlePick = this.handlePick.bind(this);
+        this.state = {
+            options: ['ONE', 'TWO', 'THREE']
+        }
+    }
+
+    handleDeleteOptions(){
+        this.setState(()=>{
+
+            return {
+                options: []
+            };
+        });
+    }
+
+    handlePick(){
+
+    }
+
     render() {
 
         const title = 'Indecision';
         const subTitle = 'Put your life in the hands of a computer.';
-        const options = ['ONE', 'TWO', 'THREE'];
+        // const options = ['ONE', 'TWO', 'THREE'];
 
         return (
             <div>
                 <Header title={title} subtitle={subTitle}/>
-                <Action/>
-                <Options options={options}/>
+                <Action hasOptions={this.state.options.length > 0}/>
+                <Options
+                    handleDeleteOptions={this.handleDeleteOptions}
+                    options={this.state.options}/>
                 <AddOption/>
             </div>
         );
