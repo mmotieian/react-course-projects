@@ -109,16 +109,25 @@ class IndecisionApp extends React.Component {
         }
     }
 
-    componentDidMount(){
-        console.log('componentDidMount ');
+    componentDidMount() {
+        console.log('fetching data');
     }
+
 
     componentWillMount(){
         console.log('componentWillMount() ');
+
+
     }
 
-    componentDidUpdate(){
-        console.log('componentDidUpdate() ');
+    componentDidUpdate(prevProps, prevState) {
+
+        if (prevState.options.length !== this.state.options.length) {
+
+            const json = JSON.stringify(this.state.options);
+            console.log('this.state.options.length ',this.state.options.length);
+            console.log('prevState.options.length ', prevState.options.length);
+        }
     }
 
     handleDeleteOptions() {
@@ -142,6 +151,7 @@ class IndecisionApp extends React.Component {
 
         if (!option) {
             return 'Enter valid value';
+        } else if (this.state.options.indexOf(option) > -1) {
         } else if (this.state.options.indexOf(option) > -1) {
             return 'Item already exists';
         }
