@@ -35,7 +35,7 @@ const Option = (props) => {
     );
 };
 
-/** ---------------Options-----------------------  **/
+/** ---------------Options -----------------------  **/
 
 const Options = (props) => {
     return (
@@ -44,12 +44,10 @@ const Options = (props) => {
                 onClick={props.handleDeleteOptions}
             >Remove All
             </button>
-            {props.options.map(
-                option => <Option
-                    key={option}
-                    optionText={option}
-                    handleDeleteOption={props.handleDeleteOption}
-                />
+            {props.options.length < 1 && <p>Please enter an Option to get started.</p>}
+
+            {props.options.map( option =>
+                <Option key={option} optionText={option} handleDeleteOption={props.handleDeleteOption} />
             )}
         </div>
     );
@@ -76,7 +74,9 @@ class AddOption extends React.Component {
         this.setState(() => ({error}));
 
 
-        e.target.elements.option.value = '';
+        if(!error) {
+            e.target.elements.option.value = '';
+        }
 
 
     }
@@ -105,12 +105,18 @@ class IndecisionApp extends React.Component {
         this.handlePick = this.handlePick.bind(this);
         this.handleAddOption = this.handleAddOption.bind(this);
         this.state = {
-            options: props.options
+            options: []
         }
     }
 
     componentDidMount() {
         console.log('fetching data');
+        const json = localStorage.getItem('options');
+        const jsonOptions = JSON.parse(json);
+        console.log(jsonOptions);
+        if (jsonOptions) {
+            this.setState(() => ({options: jsonOptions}));
+        }
     }
 
 
@@ -125,6 +131,7 @@ class IndecisionApp extends React.Component {
         if (prevState.options.length !== this.state.options.length) {
 
             const json = JSON.stringify(this.state.options);
+            localStorage.setItem('options', json);
             console.log('this.state.options.length ',this.state.options.length);
             console.log('prevState.options.length ', prevState.options.length);
         }
@@ -182,9 +189,9 @@ class IndecisionApp extends React.Component {
 
 }
 
-IndecisionApp.defaultProps = {
-    options: []
-};
+// IndecisionApp.defaultProps = {
+//     options: []
+// };
 
 // const User = (props) => {
 //     return (
@@ -195,4 +202,4 @@ IndecisionApp.defaultProps = {
 //     );
 // };
 
-ReactDOM.render(<IndecisionApp options={['hello', 'world']}/>, document.getElementById('app'));
+ReactDOM.render(<IndecisionApp options={[]}/>, document.getElementById('app'));
