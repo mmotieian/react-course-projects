@@ -4,7 +4,7 @@
 > yarn add babel-preset-react
 > yarn add babel-preset-env
 > yarn add live-server babel-cli@6.24.1
-> yarn remove webpack@3.1.0
+> yarn add webpack@3.1.0
 
 > yarn run build
 > yarn run serve
