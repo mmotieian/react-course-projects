@@ -1,15 +1,15 @@
-
-> npm install --global babel-cli
 > npm install --global yarn
-> npm install -g live-server
 
 > yarn init
 > yarn add babel-preset-react
 > yarn add babel-preset-env
+> yarn add live-server babel-cli@6.24.1
+> yarn remove webpack@3.1.0
 
-> live-server public
-> babel .\src\app.js --out-file=public/scripts/app.js --presets=env,react --watch
+> yarn run build
+> yarn run serve
 
 
 -----------------------------
 All possible React DOM elements --> https://reactjs.org/docs/dom-elements.html
+Webpack webpage --> https://webpack.js.org
