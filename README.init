@@ -9,6 +9,12 @@
 > yarn run build
 > yarn run serve
 
+/* to remove global config */
+// using yarn
+> yarn global remove babel-cli live-server
+
+// using npm
+> npm uninstall -g babel-cli live-server
 
 -----------------------------
 All possible React DOM elements --> https://reactjs.org/docs/dom-elements.html
