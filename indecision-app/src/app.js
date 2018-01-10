@@ -8,5 +8,6 @@
 
 import {isAdult, canDrink} from "./person";
 
-console.log( canDrink(21) ? 'can drink' : 'cannot drink');
-console.log( canDrink(17) ? 'is adult' : 'is not adult');
+console.log(canDrink(21) ? 'can drink' : 'cannot drink');
+console.log(canDrink(17) ? 'is adult' : 'is not adult');
+
