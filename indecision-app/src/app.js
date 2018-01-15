@@ -1,3 +1,14 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+
+// ------------------------------------------------
+
+// import validator from 'validator';
+//
+// console.log('the email format is: ',validator.isEmail('test@yahoo.com'));
+
+// ------------------------------------------------
 // import subtract, {add, square, minus} from "./utils";
 //
 // console.log('app.js is running!');
@@ -8,10 +19,11 @@
 //
 // console.log(subtract(4, 3));
 
+// ------------------------------------------------
 
-import isSenior, {isAdult, canDrink} from "./person";
-
-console.log(canDrink(21) ? 'can drink' : 'cannot drink');
-console.log(isAdult(17) ? 'is adult' : 'is not adult');
-console.log(isSenior(65) ? 'is Senior' : 'is Junior');
+// import isSenior, {isAdult, canDrink} from "./person";
+//
+// console.log(canDrink(21) ? 'can drink' : 'cannot drink');
+// console.log(isAdult(17) ? 'is adult' : 'is not adult');
+// console.log(isSenior(65) ? 'is Senior' : 'is Junior');
 
