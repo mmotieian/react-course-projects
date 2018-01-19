@@ -1,12 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+const template = <p>THIS IS JSX FROM WEBPACK</p>;
+
+ReactDOM.render(template, document.getElementById('app'));
 
 // ------------------------------------------------
 
 // import validator from 'validator';
-//
-// console.log('the email format is: ',validator.isEmail('test@yahoo.com'));
+// const email = 'test@yahoo.com';
+// console.log('the email format ',email,' is: ',validator.isEmail(email));
 
 // ------------------------------------------------
 // import subtract, {add, square, minus} from "./utils";
