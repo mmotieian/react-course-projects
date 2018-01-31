@@ -3,26 +3,33 @@ import React from "react";
 /** --------------- AddOption ------------------  **/
 export default class AddOption extends React.Component {
 
+
+    state = {
+        error: undefined
+    };
+
+    // Above is made possible by using
+    // babel's transform-class-properties
+    // library
     constructor(props) {
         super(props);
-        this.getOption = this.getOption.bind(this);
-        this.state = {
-            error: undefined
-        };
+        // this.getOption = this.getOption.bind(this);
+        // this.state = {
+        //     error: undefined
+        // };
     }
 
-    getOption(e) {
+    getOption = (e) => {
 
         e.preventDefault();
 
-        console.log("testint gas");
         const option = e.target.elements.option.value.trim();
         const error = this.props.handleAddOption(option);
 
         this.setState(() => ({error}));
 
 
-        if(!error) {
+        if (!error) {
             e.target.elements.option.value = '';
         }
 

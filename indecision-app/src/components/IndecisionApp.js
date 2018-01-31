@@ -70,7 +70,6 @@ export default class IndecisionApp extends React.Component {
         if (!option) {
             return 'Enter valid value';
         } else if (this.state.options.indexOf(option) > -1) {
-        } else if (this.state.options.indexOf(option) > -1) {
             return 'Item already exists';
         }
 
