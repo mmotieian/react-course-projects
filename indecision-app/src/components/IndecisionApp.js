@@ -8,17 +8,37 @@ import Options from './Options';
 /** -----------------IndecisionApp------------------  **/
 export default class IndecisionApp extends React.Component {
 
-    constructor(props) {
-        super(props);
+    state = {
+        options: []
+    };
 
-        this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
-        this.handleDeleteOption = this.handleDeleteOption.bind(this);
-        this.handlePick = this.handlePick.bind(this);
-        this.handleAddOption = this.handleAddOption.bind(this);
-        this.state = {
-            options: []
+    handleDeleteOptions = () => {
+        this.setState(() => ({options: []}));
+    };
+
+    handleDeleteOption = (option) => {
+        console.log('hdo ', option);
+        this.setState((prevState) => ({
+            options: prevState.options.filter((thisValue) => thisValue !== option)
+        }));
+    };
+
+    handlePick = () => {
+        const randomNum = Math.floor(Math.random() * this.state.options.length);
+        alert(this.state.options[randomNum]);
+
+    };
+
+    handleAddOption = (option) => {
+
+        if (!option) {
+            return 'Enter valid value';
+        } else if (this.state.options.indexOf(option) > -1) {
+            return 'Item already exists';
         }
-    }
+
+        this.setState((prevState) => ({options: prevState.options.concat(option)}));
+    };
 
     componentDidMount() {
         console.log('fetching data');
@@ -31,7 +51,7 @@ export default class IndecisionApp extends React.Component {
     }
 
 
-    componentWillMount(){
+    componentWillMount() {
         console.log('componentWillMount() ');
 
 
@@ -43,38 +63,11 @@ export default class IndecisionApp extends React.Component {
 
             const json = JSON.stringify(this.state.options);
             localStorage.setItem('options', json);
-            console.log('this.state.options.length ',this.state.options.length);
+            console.log('this.state.options.length ', this.state.options.length);
             console.log('prevState.options.length ', prevState.options.length);
         }
     }
 
-    handleDeleteOptions() {
-        this.setState(() => ({options: []}));
-    }
-
-    handleDeleteOption(option) {
-        console.log('hdo ', option);
-        this.setState((prevState)=> ({
-            options: prevState.options.filter( (thisValue) => thisValue !== option )
-        }));
-    }
-
-    handlePick() {
-        const randomNum = Math.floor(Math.random() * this.state.options.length);
-        alert(this.state.options[randomNum]);
-
-    }
-
-    handleAddOption(option) {
-
-        if (!option) {
-            return 'Enter valid value';
-        } else if (this.state.options.indexOf(option) > -1) {
-            return 'Item already exists';
-        }
-
-        this.setState((prevState) => ({options: prevState.options.concat(option)}));
-    }
 
     render() {
 
