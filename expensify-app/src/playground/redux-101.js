@@ -1,7 +1,10 @@
 import {createStore} from 'redux';
 
-// state = {count: 0} , the state where the init state is {count:0}
-const store = createStore((state = {count: 0}, action) => {
+
+// REDUCER - DOES SOMETHING WHEN ACTION HAPPENS
+// 1. Reducers are pure functions
+// 2. Never change state or action 
+const counterReducer = (state = {count: 0}, action) => {
 
     switch (action.type) {
         case 'INCREMENT':
@@ -23,8 +26,12 @@ const store = createStore((state = {count: 0}, action) => {
         default:
             return state;
     }
-});
+};
 
+// state = {count: 0} , the state where the init state is {count:0}
+const store = createStore(counterReducer);
+
+// STORE: LINKS REDUCER AND ACTION TOGETHER.
 store.subscribe(() => {
     console.log('store.getState()', store.getState());
 });
